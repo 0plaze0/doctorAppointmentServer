@@ -6,13 +6,14 @@ const connectDB = require("./config/dbConn");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
+//connection db
 connectDB(process.env.DB_URI);
 
 //middlewares
 app.use(express.json());
 app.use(cors());
-//routes
 
+//routes
 app.get("/", (req, res) => {
   res.send("hello");
 });
