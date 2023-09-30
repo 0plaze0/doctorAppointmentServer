@@ -14,9 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+app.use("/api/users", require("./routes/user.js"));
+app.use("/api/auth", require("./routes/auth"));
 
 mongoose.connection.once("open", () => {
   console.log("connected to database");
