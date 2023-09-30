@@ -9,7 +9,6 @@ router.post("/", async (req, res) => {
     const { error } = validate(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
-    console.log(req.body);
 
     const user = await User.findOne({ email: req.body.email });
     if (user)
@@ -18,12 +17,11 @@ router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-    const result = await User.create({
+    await User.create({
       ...req.body,
       password: hashPassword,
     });
 
-    console.log(result);
     res.status(200).send({ message: "User create successfully" });
   } catch (err) {
     console.log(err.message);
