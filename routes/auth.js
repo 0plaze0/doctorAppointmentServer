@@ -7,6 +7,7 @@ const joi = require("joi");
 router.post("/", async (req, res) => {
   try {
     const { error } = validate(req.body);
+    console.log(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
@@ -23,6 +24,7 @@ router.post("/", async (req, res) => {
     const token = user.generateAuthToken();
     res.status(200).send({ data: token, message: "logged in succesfully" });
   } catch (err) {
+    console.log(err.message);
     res.status(500).send({ message: "Internal server Error" });
   }
 });
@@ -32,7 +34,7 @@ const validate = (data) => {
     email: joi.string().required().label("Email"),
     password: joi.string().required().label("passoword"),
   });
-  return Schema.validate(data);
+  return schema.validate(data);
 };
 
 module.exports = router;
