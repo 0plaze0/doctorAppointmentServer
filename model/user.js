@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const jwt = require("jwt");
+const jwt = require("jsonwebtoken");
 const joi = require("joi");
 const passwordValidator = require("joi-password-complexity");
 
