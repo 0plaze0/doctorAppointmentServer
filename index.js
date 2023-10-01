@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 const connectDB = require("./config/dbConn");
 const cors = require("cors");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3500;
 
 //connection db
 connectDB(process.env.DB_URI);
